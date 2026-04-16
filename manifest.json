@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Dashboard — New Tab",
+  "version": "1.0.0",
+  "description": "Personal dashboard: RSS feeds, Quick Links, Currency, Calendar, Tasks.",
+
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+
+  "permissions": [
+    "identity",
+    "storage",
+    "tabs"
+  ],
+
+  "host_permissions": [
+    "*://*/*"
+  ],
+
+  "oauth2": {
+    "client_id": "890256513528-aql100cimv2ehm9c0omjetmf79oq39e9.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/calendar.readonly",
+      "https://www.googleapis.com/auth/tasks"
+    ]
+  },
+
+  "icons": {
+    "16":  "icons/icon16.png",
+    "48":  "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

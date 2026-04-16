@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <svg id="sun-arc-svg" viewBox="0 0 110 40" width="110" height="40" aria-hidden="true"></svg>
+      <div class="topbar-greeting">
+        <span id="greeting-text">Good morning</span>
+        <span id="topbar-date" class="topbar-date"></span>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <button class="topbar-btn" id="edit-btn" title="Edit layout">✎ Edit</button>
+      <button class="topbar-btn settings-btn" id="open-settings" title="Settings">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        Settings
+      </button>
+    </div>
+  </header>
+
+  <!-- Dashboard — 4 columns -->
+  <main class="dashboard" id="dashboard">
+
+    <section class="dash-col" id="col-1">
+      <div class="widget" id="widget-quote"></div>
+      <div class="widget" id="widget-currency"></div>
+      <div class="widget" id="widget-quicklinks"></div>
+    </section>
+
+    <section class="dash-col" id="col-2">
+      <div class="widget" id="widget-rss-hn"></div>
+      <div class="widget" id="widget-calendar"></div>
+    </section>
+
+    <section class="dash-col" id="col-3">
+      <div class="widget" id="widget-rss-verge"></div>
+      <div class="widget" id="widget-tasks"></div>
+    </section>
+
+    <section class="dash-col" id="col-4">
+      <div class="widget" id="widget-rss-tc"></div>
+    </section>
+
+  </main>
+
+  <!-- Add-widget panel (shown in edit mode) -->
+  <div id="add-panel" class="add-panel">
+    <div class="add-panel-title">Add widget</div>
+    <div class="add-panel-body"></div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/drag.js"></script>
+  <script src="js/widgets/quote.js"></script>
+  <script src="js/widgets/currency.js"></script>
+  <script src="js/widgets/quicklinks.js"></script>
+  <script src="js/widgets/rss.js"></script>
+  <script src="js/widgets/calendar.js"></script>
+  <script src="js/widgets/tasks.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

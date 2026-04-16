@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Dashboard Settings</title>
+  <link rel="stylesheet" href="css/settings.css" />
+</head>
+<body>
+
+  <header class="settings-header">
+    <h1>Dashboard Settings</h1>
+    <a href="#" id="back-link">← Open new tab</a>
+  </header>
+
+  <main class="settings-body">
+
+    <!-- RSS Feeds -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">RSS Feeds</span>
+      </div>
+      <div class="card-body">
+        <div id="feeds-list"></div>
+        <form id="add-feed-form" style="margin-top:14px">
+          <div class="form-row">
+            <input class="form-input" id="feed-name" placeholder="Feed name" required />
+            <input class="form-input" id="feed-url"  placeholder="Feed URL (https://...)" type="url" required />
+            <button class="btn" type="submit">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Google Integrations -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Google Integrations</span>
+      </div>
+      <div class="card-body">
+        <div id="google-integrations"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>
