@@ -4,6 +4,7 @@
 const ALL_WIDGETS = [
   { id: 'widget-quote',      name: 'Quote of the Day'   },
   { id: 'widget-currency',   name: 'Currency Converter' },
+  { id: 'widget-finance',    name: 'Finance Tracker'    },
   { id: 'widget-quicklinks', name: 'Quick Links'        },
   { id: 'widget-rss-hn',    name: 'Hacker News'        },
   { id: 'widget-rss-verge', name: 'The Verge'          },
@@ -258,11 +259,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   await Promise.allSettled([
     QuoteWidget.init(),
     CurrencyWidget.init(),
+    FinanceWidget.init(),
     QuickLinksWidget.init(),
     ...allFeeds.map(f => RssWidget.init(f.id)),
     CalendarWidget.init(),
     TasksWidget.init()
   ]);
+
+  window.addEventListener('google-auth-complete', () => {
+    CalendarWidget.init();
+    TasksWidget.init();
+  });
 
   // Restore collapsed state after widgets have rendered their headers
   await applyCollapsedState();

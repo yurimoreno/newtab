@@ -159,8 +159,8 @@ async function initGoogleIntegrations() {
   // ── Render ────────────────────────────────────────────────────────────────
 
   async function render() {
-    const calToken   = await getToken('oauth_cal');
-    const tasksToken = await getToken('oauth_tasks');
+    const calToken = await getToken('oauth_google');
+    const tasksToken = calToken;
     const [calSub, tasksSub] = await Promise.all([
       buildCalSection(calToken),
       buildTasksSection(tasksToken)
@@ -199,11 +199,11 @@ async function initGoogleIntegrations() {
 
     // Disconnect buttons
     document.getElementById('cal-disconnect-btn')?.addEventListener('click', async () => {
-      await StorageLocal.remove('oauth_cal');
+      await StorageLocal.remove('oauth_google');
       render();
     });
     document.getElementById('tasks-disconnect-btn')?.addEventListener('click', async () => {
-      await StorageLocal.remove('oauth_tasks');
+      await StorageLocal.remove('oauth_google');
       render();
     });
 

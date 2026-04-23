@@ -3,8 +3,8 @@
 const CalendarWidget = (() => {
   const CONTAINER  = 'widget-calendar';
   const CLIENT_ID  = '890256513528-aql100cimv2ehm9c0omjetmf79oq39e9.apps.googleusercontent.com';
-  const SCOPE      = 'https://www.googleapis.com/auth/calendar.readonly';
-  const TOKEN_KEY  = 'oauth_cal';
+  const SCOPE      = 'https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/tasks';
+  const TOKEN_KEY  = 'oauth_google';
   const API_BASE   = 'https://www.googleapis.com/calendar/v3';
 
   // ── Token storage ─────────────────────────────────────────────────────────
@@ -132,6 +132,7 @@ const CalendarWidget = (() => {
         await getToken(true);
         renderLoading(el);
         await loadEvents(el);
+        window.dispatchEvent(new CustomEvent('google-auth-complete'));
       } catch (err) {
         console.error('[Calendar] sign-in failed:', err);
         renderError(el, 'Sign-in cancelled or failed.');
