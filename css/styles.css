@@ -14,6 +14,7 @@
   --border:          #e8ecf1;
   --radius:          5px;
   --shadow:          0 1px 3px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  --hover-bg:        rgba(58,111,204,0.08);
 }
 
 html, body {
@@ -474,12 +475,12 @@ html, body {
   align-items: flex-start;
   gap: 7px;
   padding: 6px 10px 6px 12px;
-  color: #1e3a6e;
+  color: var(--text);
   text-decoration: none;
   transition: background 0.1s;
 }
 
-.rss-item a:hover { background: #eef3fc; }
+.rss-item a:hover { background: var(--hover-bg, rgba(58,111,204,0.08)); }
 
 .rss-favicon {
   width:  14px;
@@ -505,11 +506,13 @@ html, body {
   font-size: 12px;
   line-height: 1.4;
   font-weight: 400;
-  color: #1e3a6e;
+  color: var(--text);
   display: block;
 }
 
 .rss-item a:hover .rss-title { color: var(--accent); }
+
+.rss-item--featured a:hover .rss-title { color: var(--accent); }
 
 /* Timestamp */
 .rss-time {
@@ -559,7 +562,7 @@ html, body {
 
 .rss-item--featured .rss-item-text { flex: 1; min-width: 0; }
 
-.rss-item--featured a:hover { background: #eef3fc; }
+.rss-item--featured a:hover { background: var(--hover-bg, rgba(58,111,204,0.08)); }
 .rss-item--featured a:hover .rss-title { color: var(--accent); }
 
 /* ─── Drag & Drop ────────────────────────────────────────────────────────── */
@@ -983,3 +986,271 @@ body.edit-mode .widget {
 }
 
 .task-add-input::placeholder { color: var(--text-muted); }
+
+/* ─── Finance widget ─────────────────────────────────────────────────────── */
+.finance-body {
+  padding: 8px 12px 10px;
+}
+
+.finance-empty {
+  padding: 8px 12px 12px;
+  text-align: center;
+}
+
+.finance-empty p {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.finance-add-form {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.finance-ticker-input {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 5px 8px;
+  font-size: 12px;
+  outline: none;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.finance-ticker-input:focus {
+  border-color: var(--accent);
+}
+
+.finance-ticker-input::placeholder { color: var(--text-muted); }
+
+.finance-add-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.finance-add-btn:hover { opacity: 0.85; }
+
+.finance-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.finance-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.finance-item:last-child {
+  border-bottom: none;
+}
+
+.finance-item-left {
+  min-width: 60px;
+}
+
+.finance-ticker-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.finance-ticker-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.finance-item-chart {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.finance-sparkline-svg {
+  display: block;
+}
+
+.finance-item-right {
+  text-align: right;
+  min-width: 75px;
+}
+
+.finance-item-price {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.finance-item-change {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.finance-item-change.pos { color: #137333; }
+.finance-item-change.neg { color: #C5221F; }
+.finance-item-change { color: var(--text-muted); }
+
+.finance-item-change svg {
+  flex-shrink: 0;
+}
+
+.finance-remove-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.finance-item:hover .finance-remove-btn {
+  opacity: 1;
+}
+
+.finance-remove-btn:hover {
+  color: #C5221F;
+}
+
+.finance-item-error {
+  font-size: 11px;
+  color: #9a6700;
+  background: #fffb8e;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-top: 4px;
+}
+
+.theme-toggle-btn {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.65);
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(255,255,255,0.13);
+  color: #fff;
+  border-color: rgba(255,255,255,0.22);
+}
+
+[data-theme="dark"] .theme-toggle-btn {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  color: #fbbf24;
+}
+
+[data-theme="dark"] .theme-toggle-btn:hover {
+  background: rgba(255,255,255,0.16);
+  color: #fcd34d;
+}
+
+/* ─── Dark Mode ─────────────────────────────────────────────────────────────── */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:              #1a1d23;
+    --card-bg:         #252931;
+    --topbar-bg:       #13151c;
+    --card-header-bg:  #2d4a8a;
+    --card-header-hov: #24407a;
+    --accent:          #4d7be0;
+    --accent-hov:      #3d6bd4;
+    --text:            #e2e8f0;
+    --text-muted:      #8a9bb5;
+    --border:          #353b4a;
+    --shadow:          0 1px 3px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.2);
+    --hover-bg:        rgba(77,123,224,0.15);
+  }
+}
+
+[data-theme="dark"] {
+  --bg:              #1a1d23;
+  --card-bg:         #252931;
+  --topbar-bg:       #13151c;
+  --card-header-bg:  #2d4a8a;
+  --card-header-hov: #24407a;
+  --accent:          #4d7be0;
+  --accent-hov:      #3d6bd4;
+  --text:            #e2e8f0;
+  --text-muted:      #8a9bb5;
+  --border:          #353b4a;
+  --shadow:          0 1px 3px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.2);
+  --hover-bg:        rgba(77,123,224,0.15);
+}
+
+/* Dark mode topbar icon buttons */
+[data-theme="dark"] .topbar-btn {
+  color: rgba(255,255,255,0.7);
+}
+
+[data-theme="dark"] .settings-btn svg {
+  stroke: rgba(255,255,255,0.7);
+}
+
+/* Dark mode widget body backgrounds */
+[data-theme="dark"] .currency-input {
+  background: #1e222b;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .currency-input:focus {
+  background: #1e222b;
+}
+
+[data-theme="dark"] .finance-ticker-input {
+  background: #1e222b;
+  color: var(--text);
+}
+
+[data-theme="dark"] .ql-group-header {
+  background: #2a2f3a;
+}
+
+[data-theme="dark"] .ql-link:hover {
+  background: rgba(77,123,224,0.1);
+}
+
+[data-theme="dark"] .rss-item a:hover {
+  background: rgba(77,123,224,0.1);
+}
+
+[data-theme="dark"] .rss-item--featured a:hover {
+  background: rgba(77,123,224,0.1);
+}
+
+/* Dark skeleton shimmer */
+[data-theme="dark"] .skeleton {
+  background: linear-gradient(90deg, #2a2f3a 25%, #353b4a 50%, #2a2f3a 75%);
+  background-size: 200% 100%;
+}

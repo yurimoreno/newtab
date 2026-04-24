@@ -6,6 +6,27 @@ const DEFAULT_FEEDS = [
   { id: 'tc',    name: 'TechCrunch',  url: 'https://techcrunch.com/feed/' }
 ];
 
+/* ── Theme ────────────────────────────────────────────────────────────────── */
+
+async function initTheme() {
+  const stored = await StorageSync.get('theme');
+  if (stored === 'dark') {
+    document.documentElement.dataset.theme = 'dark';
+    document.getElementById('theme-toggle-btn')?.classList.add('dark');
+  } else if (stored === 'light') {
+    document.documentElement.dataset.theme = 'light';
+  }
+  // If stored === null or 'auto', let CSS @media fallback handle it
+}
+
+async function toggleTheme() {
+  const current = document.documentElement.dataset.theme;
+  const next = current === 'dark' ? 'light' : 'dark';
+  await StorageSync.set('theme', next);
+  document.documentElement.dataset.theme = next;
+  document.getElementById('theme-toggle-btn')?.classList.toggle('dark', next === 'dark');
+  return next;
+}
 
 /* ── Helpers ─────────────────────────────────────────────────────────────── */
 
@@ -237,7 +258,13 @@ function initBackLink() {
 
 /* ── Boot ────────────────────────────────────────────────────────────────── */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await initTheme();
+
+  document.getElementById('theme-toggle-btn')?.addEventListener('click', async () => {
+    await toggleTheme();
+  });
+
   initBackLink();
   initFeeds();
   initGoogleIntegrations();

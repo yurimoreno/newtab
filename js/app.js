@@ -1,5 +1,32 @@
 /* app.js — Bootstrap: greeting, sun arc, widget visibility + collapse, drag */
 
+// ── Theme ─────────────────────────────────────────────────────────────────────
+async function initTheme() {
+  const stored = await StorageSync.get('theme');
+  if (stored === 'dark') {
+    applyTheme('dark');
+  } else if (stored === 'light') {
+    applyTheme('light');
+  }
+}
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+}
+
+async function toggleTheme() {
+  const current = document.documentElement.dataset.theme;
+  const next = current === 'dark' ? 'light' : 'dark';
+  await StorageSync.set('theme', next);
+  applyTheme(next);
+  return next;
+}
+
+window.setTheme = async (theme) => {
+  await StorageSync.set('theme', theme);
+  applyTheme(theme);
+};
+
 // ── Widget registry ───────────────────────────────────────────────────────────
 const ALL_WIDGETS = [
   { id: 'widget-quote',      name: 'Quote of the Day'   },
@@ -230,6 +257,21 @@ function observeForRemoveBtns() {
 // ── Boot ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
   initGreeting();
+  await initTheme();
+
+  function renderThemeBtn(theme) {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    btn.title = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  }
+
+  document.getElementById('theme-toggle')?.addEventListener('click', async () => {
+    const theme = await toggleTheme();
+    renderThemeBtn(theme);
+  });
+
+  renderThemeBtn(document.documentElement.dataset.theme || 'light');
 
   document.getElementById('open-settings')?.addEventListener('click', () => {
     chrome.tabs.create({ url: chrome.runtime.getURL('settings.html') });
