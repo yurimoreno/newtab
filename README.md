@@ -4,7 +4,8 @@ A personal dashboard Chrome/Brave extension that replaces the new tab page. Buil
 
 ![Dashboard Preview](https://img.shields.io/badge/version-2026.04.15-blue) ![Manifest V3](https://img.shields.io/badge/Manifest-V3-green)
 
-<img width="1206" height="948" alt="image" src="https://github.com/user-attachments/assets/012f21d6-9b79-42a6-9e3a-08ae9c539904" />
+<img width="1208" height="959" alt="SCR-20260505-qucv" src="https://github.com/user-attachments/assets/cf87791c-6480-45f2-8fc8-9fe08c2d49dd" />
+
 
 
 ## Features
