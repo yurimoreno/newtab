@@ -62,6 +62,12 @@ const RssWidget = (() => {
     };
   }
 
+  function decodeEntities(str) {
+    const txt = document.createElement('textarea');
+    txt.innerHTML = str;
+    return txt.value;
+  }
+
   // ── XML parsing ──────────────────────────────────────────────────────────────
 
   function parseXml(text) {
@@ -79,7 +85,7 @@ const RssWidget = (() => {
         const hnMeta  = parseHnMeta(descRaw);
 
         return {
-          title:    n.querySelector('title')?.textContent?.trim()  ?? '(no title)',
+          title:    decodeEntities(n.querySelector('title')?.textContent?.trim()  ?? '(no title)'),
           link,
           date:     n.querySelector('pubDate')?.textContent?.trim() ?? '',
           author:   n.querySelector('creator')?.textContent?.trim() ??  // dc:creator
@@ -98,7 +104,7 @@ const RssWidget = (() => {
       const contentHtml = n.querySelector('content')?.textContent ?? '';
 
       return {
-        title:    n.querySelector('title')?.textContent?.trim() ?? '(no title)',
+        title:    decodeEntities(n.querySelector('title')?.textContent?.trim() ?? '(no title)'),
         link,
         date:     n.querySelector('published')?.textContent?.trim()
                ?? n.querySelector('updated')?.textContent?.trim()  ?? '',
