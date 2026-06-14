@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Dashboard — New Tab",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Personal dashboard: RSS feeds, Quick Links, Currency, Calendar, Tasks.",
 
   "chrome_url_overrides": {

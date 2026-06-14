@@ -2,7 +2,7 @@
 
 A personal dashboard Chrome/Brave extension that replaces the new tab page. Built with vanilla JS, no build step required.
 
-![Dashboard Preview](https://img.shields.io/badge/version-2026.04.15-blue) ![Manifest V3](https://img.shields.io/badge/Manifest-V3-green)
+![Dashboard Preview](https://img.shields.io/badge/version-2026.06.13-blue) ![Manifest V3](https://img.shields.io/badge/Manifest-V3-green)
 
 <img width="1208" height="959" alt="SCR-20260505-qucv" src="https://github.com/user-attachments/assets/cf87791c-6480-45f2-8fc8-9fe08c2d49dd" />
 
@@ -10,6 +10,7 @@ A personal dashboard Chrome/Brave extension that replaces the new tab page. Buil
 
 ## Features
 
+- **World Cup 2026** — Live scores, today's fixtures, and upcoming matches for the FIFA World Cup, with team flags, group/stage, venue, and kickoff times in your local timezone. Auto-refreshes during live games. Powered by ESPN's public data (no API key) with a static schedule fallback.
 - **RSS Feeds** — Configurable feeds (Hacker News, The Verge, TechCrunch + any custom URL). Favicons, thumbnails, relative timestamps, HN upvote/comment counts, and read/unread tracking that persists across sessions.
 - **Google Calendar** — OAuth-connected, shows the next 7 days across multiple calendars. Each event has a colored dot matching its calendar color and links directly to the event. The next upcoming event is highlighted with a live countdown ("Starting in 23m").
 - **Google Tasks** — Shows your task list with the ability to add new tasks inline and mark tasks as done with a single click.
@@ -71,6 +72,7 @@ newtab/
 │   ├── settings.js        # Settings page logic
 │   └── widgets/
 │       ├── quote.js       # Quote of the Day + shared utilities
+│       ├── worldcup.js    # FIFA World Cup 2026 (live scores + schedule)
 │       ├── currency.js    # Currency converter
 │       ├── quicklinks.js  # Quick Links (inline editable)
 │       ├── rss.js         # RSS / Atom reader
