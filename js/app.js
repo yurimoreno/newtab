@@ -30,6 +30,7 @@ window.setTheme = async (theme) => {
 // ── Widget registry ───────────────────────────────────────────────────────────
 const ALL_WIDGETS = [
   { id: 'widget-quote',      name: 'Quote of the Day'   },
+  { id: 'widget-worldcup',   name: 'World Cup 2026'     },
   { id: 'widget-currency',   name: 'Currency Converter' },
   { id: 'widget-finance',    name: 'Finance Tracker'    },
   { id: 'widget-quicklinks', name: 'Quick Links'        },
@@ -300,6 +301,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   await Promise.allSettled([
     QuoteWidget.init(),
+    WorldCupWidget.init(),
     CurrencyWidget.init(),
     FinanceWidget.init(),
     QuickLinksWidget.init(),
