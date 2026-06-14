@@ -4,8 +4,9 @@ const WorldCupWidget = (() => {
   const CONTAINER = 'widget-worldcup';
 
   // Tournament window: June 11 → July 19, 2026
+  // limit=110 covers all 104 matches with headroom; without it ESPN defaults to 25.
   const ESPN_URL =
-    'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=20260611-20260719';
+    'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=20260611-20260719&limit=110';
   // Keyless static fallback (schedule only, no live scores)
   const STATIC_URL = 'https://www.thestatsapi.com/world-cup/data/fixtures.json';
 
